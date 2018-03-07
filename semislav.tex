@@ -1,0 +1,58 @@
+\documentclass[twocolumn]{book}
+
+\usepackage{xskak}
+\usepackage{xcolor}
+\usepackage[framemethod=tikz]{mdframed}
+
+\newcommand\mymainline{\mainline[style=styleC]}
+\newcommand\myvariation{\variation[style=styleB]}
+
+\newcounter{Lemma}[section]
+\newenvironment{Lemma}[1][]{%
+  \stepcounter{Lemma}%
+  \ifstrempty{#1}%
+  {\mdfsetup{%
+    frametitle={%
+      \tikz[baseline=(current bounding box.east),outer sep=1pt]
+      \node[rounded corners=3pt,anchor=east,line width=1pt,draw=black,rectangle,fill=red!60]
+    {\strut \color{black}{NN-NN}~\theLemma};}}
+  }%
+  {\mdfsetup{%
+    frametitle={%
+      \tikz[baseline=(current bounding box.east),outer sep=1pt]
+      \node[rounded corners=3pt,anchor=east,line width=1pt,draw=black,rectangle,fill=red!60]
+    {\strut \color{black}{#1}};}}%
+  }%
+  \mdfsetup{innertopmargin=10pt,linecolor=black,%
+            linewidth=1pt,topline=true,%
+            frametitleaboveskip=\dimexpr-\ht\strutbox\relax,backgroundcolor=red!10}
+  \begin{mdframed}[]\relax%
+  }{\end{mdframed}}
+
+\title{Semi-Slav: a guide}
+\author{Julien}
+
+\setlength{\columnwidth}{12cm}
+
+\begin{document}
+
+\maketitle
+
+\chapter{Example}
+
+\newchessgame[id=introduction]
+\mymainline{1.d4 d5 2. c4 c6 3.Nc3 e6 4.Nf3}
+
+From this point, \myvariation{3.e3 Nf6} is a good but far less aggressive alternative.
+
+\showboard
+
+\begin{Lemma}[Kramnik-Anand (2007)]
+\newchessgame[id=firstexample]
+\mymainline{1.d4 d5 2. c4 c6 3.Nc3 e6 4.Nf3}
+From this point, \myvariation{3.e3 Nf6} is a good but far less aggressive alternative.
+\mymainline{4... Nf6 5.e3}
+\showboard
+\end{Lemma}
+
+\end{document}
